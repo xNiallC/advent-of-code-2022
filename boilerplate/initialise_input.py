@@ -11,11 +11,11 @@ def get_input_path():
   return ('/'.join(running_path) + ('/test.txt' if is_testing else '/input.txt'))
 
 class InitialiseInput(object):
-  def __init__(self):
+  def __init__(self, no_strip=False):
     text_filename = get_input_path()
     with open(text_filename) as f:
       content = f.readlines()
-    content = [x.strip() for x in content]
+    content = [(x.replace('\n', '') if no_strip else x.strip()) for x in content]
     self.text_content = content
 
   def get_text_content(self):
